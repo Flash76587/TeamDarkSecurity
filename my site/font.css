@@ -1,0 +1,36 @@
+/* General Font Styling */
+body {
+    font-family: 'Poppins', sans-serif; /* Poppins font globally */
+}
+
+/* Animated Text */
+.animated-text {
+    font-size: 2.8rem;
+    font-weight: bold;
+    animation: fadeInSlide 4s forwards;
+}
+
+/* Headings */
+h1, h2 {
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+/* Paragraphs */
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.description {
+    font-size: 1rem;
+}
+
+/* Button Font Styling */
+.btn {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
