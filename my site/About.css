@@ -1,0 +1,65 @@
+/* Custom styles for horizontal line */
+hr:not([size]) {
+    height: 3px; /* Set the height of the horizontal line */
+    background-color: #f1eaea; /* Use background-color instead of color for the line */
+    border: none; /* Remove default border */
+}
+
+/* Styling for heading */
+h6 {
+    color: #ffffff; /* Set color for h6 headings */
+}
+
+/* Custom image styles */
+.custom-image {
+    max-width: 350px; /* Set the maximum width for the image */
+    width: 100%; /* Make the image responsive */
+}
+
+/* Move image higher */
+.move-up {
+    margin-top: -50px; /* Adjust this value to move the image higher */
+}
+
+/* Ensure paragraph is aligned properly on mobile */
+@media (max-width: 767px) {
+    .row {
+        text-align: center; /* Center-align text on mobile view */
+    }
+    .move-up {
+        margin-top: -3px; /* Optional: reduce the upward movement for mobile */
+    }
+}
+
+
+
+
+
+/* Center container */
+.link-container {
+    display: flex;
+    justify-content: center;  /* Horizontally center the link */
+    align-items: center;      /* Vertically center if needed */
+                /* Full viewport height if centering vertically */
+}
+
+/* Style for the specific link */
+.contact-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.contact-link:hover {
+    color: #ffffff;
+    background-color: #0056b3;
+}
+
+.contact-link:active {
+    color: #ffffff;
+    background-color: #003580;
+}
+

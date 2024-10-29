@@ -1,0 +1,71 @@
+/* Navbar styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures the navbar is above the content */
+}
+
+.navbar-light .navbar-toggler {
+    color: #1d1f1f;
+    border-color: rgba(30, 31, 29, 0);
+}
+
+.navbar-toggler-icon {
+    background-color: #2d3032;
+    border-radius: 1px; /* Optional: Add rounding */
+}
+
+.bg-light {
+    background-color: #2d3133 !important;
+}
+
+.navbar-nav .nav-link {
+    color: rgb(255, 255, 255) !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: #ffffff !important;
+}
+
+.navbar-brand {
+    transform: translate(5px, 5px);
+}
+
+
+
+.navbar-light .navbar-brand {
+    color: rgba(252, 250, 250, 0.9);
+}
+
+.navbar {
+    padding: 10px 20px; /* Adjust padding for top/bottom and sides */
+    min-height: 70px;   /* Minimum height of the navbar */
+}
+
+
+
+
+
+
+/* Navbar Customizations */
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.brand-title {
+    font-weight: 500;
+    color: #4ecca3; /* Highlight color for branding */
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #4ecca3 !important; /* Hover color for navbar links */
+}
+
+
