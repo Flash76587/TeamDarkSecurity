@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+       <loc>https://teamdarksecurity.com/</loc>
+       <lastmod>2024-11-02T20:47:25+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://teamdarksecurity.com/index.html</loc>
+       <lastmod>2024-11-02T20:47:25+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://teamdarksecurity.com/Tool.html</loc>
+       <lastmod>2024-11-02T20:47:25+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://teamdarksecurity.com/privacypolicy.html</loc>
+       <lastmod>2024-11-02T20:47:25+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://teamdarksecurity.com/contact.html</loc>
+       <lastmod>2024-11-02T20:47:25+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://teamdarksecurity.com/About.html</loc>
+       <lastmod>2024-11-02T20:47:25+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://teamdarksecurity.com/passgenrate.html</loc>
+       <lastmod>2024-11-02T20:47:25+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://teamdarksecurity.com/check.html</loc>
+       <lastmod>2024-11-02T20:47:25+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+</urlset>
