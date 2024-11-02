@@ -1,0 +1,119 @@
+/* General Body Styling */
+body {
+    background-color: #1c1c1c; /* Dark background for a modern look */
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif; /* Poppins font globally */
+    padding-top: 56px; /* Space for the fixed navbar */
+    margin: 0;
+}
+
+/* Navbar Customizations */
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.brand-title {
+    font-weight: 500;
+    color: #4ecca3; /* Highlight color for branding */
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #4ecca3 !important; /* Hover color for navbar links */
+}
+
+/* Animated Text */
+.animated-text {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #4ecca3;
+    animation: fadeInSlide 4s forwards;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Content Wrapper Styling */
+.wrapper {
+    max-width: 850px;
+    margin: 0 auto;
+    background-color: #2c2c2c;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    color: #cccccc;
+}
+
+/* Headings */
+h1, h2 {
+    color: #4ecca3;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+/* Paragraphs */
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #bbbbbb;
+    margin-top: 20px;
+}
+
+.description {
+    color: #cccccc;
+    font-size: 1rem;
+}
+
+/* Button Customizations */
+.btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #4ecca3;
+    border: none;
+    color: #1c1c1c;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #3ab795; /* Darker shade on hover */
+}
+
+/* Image Styling */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer Styling (if needed) */
+footer {
+    background-color: #222222;
+    color: #bbbbbb;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+hr:not([size]) {    
+    height: 3px;
+    background-color: #ffffff;
+  }
