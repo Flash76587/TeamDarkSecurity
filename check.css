@@ -1,0 +1,35 @@
+
+
+.password-analyzer {
+    border-radius: 10px;
+    transition: box-shadow 0.3s;
+}
+
+.password-analyzer:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.progress {
+    height: 20px;
+    border-radius: 5px;
+}
+
+#strength-bar {
+    transition: width 0.5s;
+}
+
+.icon {
+    margin-right: 10px;
+    transition: color 0.3s;
+}
+
+.list-group-item {
+    cursor: default;
+}
+
+/* New class for white background */
+.white-background {
+    background-color: #ffffff; /* Sets the background to white */
+}
+
+/* hr line size code */
