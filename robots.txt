@@ -1,2 +1,21 @@
+# robots.txt for teamdarksecurity.com
+
 User-agent: *
-Disallow: /blocked-directory/
+# Allow bots to access these pages
+Allow: /
+Allow: /index.html
+Allow: /Tool.html
+Allow: /Guide.html
+Allow: /privacypolicy.html
+Allow: /contact.html
+Allow: /About.html
+
+# Block bots from accessing sensitive directories or files
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /cgi-bin/
+
+# Sitemap location
+Sitemap: https://www.teamdarksecurity.com/sitemap.xml
+
