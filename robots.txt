@@ -1,21 +1,21 @@
 # robots.txt for teamdarksecurity.com
 
+# Allow all bots to access public pages
 User-agent: *
-# Allow bots to access these pages
 Allow: /
-Allow: /index.html
-Allow: /Tool.html
-Allow: /Guide.html
-Allow: /privacypolicy.html
-Allow: /contact.html
-Allow: /About.html
 
-# Block bots from accessing sensitive directories or files
-Disallow: /admin/
-Disallow: /login/
-Disallow: /register/
-Disallow: /cgi-bin/
+# Block specific folders (if any exist)
+Disallow: /assets/private/  # Example: Private assets folder (if it exists)
 
 # Sitemap location
 Sitemap: https://www.teamdarksecurity.com/sitemap.xml
+
+# AdSense compatibility (if applicable)
+User-agent: Mediapartners-Google
+Allow: /
+
+# Ensure ads.txt file is crawlable
+User-agent: *
+Allow: /ads.txt
+
 
