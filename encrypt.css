@@ -1,0 +1,119 @@
+/* styles.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #0a0a0a;
+    overflow: hidden;
+  }
+  
+  .container {
+    max-width: 750px;
+    margin: 0 auto;
+    z-index: 2;
+  }
+  
+  .card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 3;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  /* Header Styling */
+  h1 {
+    font-weight: 600;
+    color: #ffffff !important; /* Ensure it applies */
+    font-size: 2rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 5; /* Ensure the text is above the background */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow for better visibility */
+  }
+  
+  /* Label Styling */
+  label {
+    color: #f8fbfa !important; /* Ensure it applies */
+    font-weight: 600;
+    position: relative;
+    z-index: 5; /* Ensure the text is above the background */
+  }
+  
+  /* Input and Textarea Styling */
+  textarea, input {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  textarea:focus, input:focus {
+    background-color: #444;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    border-color: #16a085;
+  }
+  
+  /* Button Styling */
+  button {
+    font-weight: 600;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    background-color: #1979e0; /* Default background color (blue) */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+  }
+  
+  button:hover {
+    background-color: #1991cd; /* Hover background color (darker blue) */
+    transform: translateY(-3px);
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    transform: translateY(1px);
+  }
+  
+  /* Fluid Wave Background Animation */
+  .wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(45deg, #16a085, #1e1e1e, #ff6f61);
+    animation: waveMovement 8s cubic-bezier(0.25, 0.5, 0.5, 1) infinite;
+    transform: rotate(30deg);
+    z-index: 1; /* Ensure the wave is below the content */
+  }
+  
+  @keyframes waveMovement {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(50%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
