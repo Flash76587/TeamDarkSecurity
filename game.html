@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale= 1.0,">
+    <title>Catch the Virus Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background-color: #181818;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+        }
+        .game-container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+        }
+        #gameCanvas {
+            background: #333;
+            border: 2px solid #555;
+            flex-grow: 1;
+        }
+        .score-panel {
+            background-color: #212529;
+            width: 250px;
+            padding: 20px;
+        }
+        .score-panel h2 {
+            font-size: 1.5rem;
+            color: #00ff00;
+        }
+        .score-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+        .score-panel li {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+        .btn-restart, .btn-start {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+        .btn-restart:hover, .btn-start:hover {
+            background-color: #0056b3;
+        }
+        #gameOverMessage {
+            display: none;
+            text-align: center;
+            color: #ff0000;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Side Notification Styles */
+        #sideNotification {
+            position: fixed;
+            top: 20px;
+            right: -300px;
+            width: 250px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: right 0.5s;
+        }
+
+        #sideNotification.show {
+            right: 20px;
+        }
+        #pausePopup h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+#pausePopup button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+#pausePopup button:hover {
+    background-color: #218838;
+}
+
+/* Level Up Popup Styles */
+.level-up-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #08aa26;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    z-index: 100;
+    box-shadow: 0 0 15px rgba(27, 26, 26, 0.5);
+    text-align: center;
+    width: 300px;
+}
+
+.control-bar {
+    position: absolute;
+    bottom: 50px; /* Adjust the bottom space to move it up or down */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between; /* Space out buttons between left and right */
+    width: 100%;
+    z-index: 10;
+    padding: 0 20px; /* Optional: Adds some padding to avoid buttons being too close to the edges */
+}
+
+.control-btn {
+    width: 61px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.control-btn:hover {
+    background-color: #0056b3; /* Darken button color on hover */
+}
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div class="score-panel">
+            <h2>Game Status</h2>
+            <ul>
+                <li><strong>Score:</strong> <span id="score">0</span></li>
+                <li><strong>Viruses Caught:</strong> <span id="caught">0</span></li>
+                <li><strong>Missed:</strong> <span id="missed">0</span></li>
+                <li><strong>Level:</strong> <span id="level">1</span></li>
+                <li><strong>Target Score:</strong> <span id="targetScore">1000</span></li>
+            </ul>
+            <button id="startButton" class="btn btn-start w-100 mt-4">Start Game</button>
+            <button id="restartButton" class="btn btn-restart w-100 mt-4" style="display: none;">Restart Game</button>
+            <button id="pauseButton" class="btn btn-warning w-100 mt-2">Pause Game</button>
+
+            <!-- Pause Popup -->
+            <div id="pausePopup" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.8); color: white; padding: 30px; border-radius: 10px; text-align: center; z-index: 10;">
+                <h3>Game Paused</h3>
+                <button id="resumeButton" class="btn btn-success mt-3">Resume Game</button>
+            </div>
+            <div id="controlBar" class="control-bar">
+                <button id="leftBtn" class="control-btn"><<</button>
+                <button id="rightBtn" class="control-btn">>></button>
+            </div>
+
+
+
+            <!-- Level Up Popup -->
+           <div id="levelUpPopup" class="level-up-popup">
+             <h3 id="levelUpMessage"></h3>
+            </div>
+
+
+
+            <div id="gameOverMessage">Your system is hacked!</div>
+
+        </div>
+    </div>
+
+    <!-- Side Notification -->
+    <div id="sideNotification">
+        Try to break Firewall!
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="/sound/b.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Virus Catching Sound -->
+    <audio id="catchSound">
+        <source src="/sound/c.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+  const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// Score panel elements
+const scoreEl = document.getElementById('score');
+const caughtEl = document.getElementById('caught');
+const missedEl = document.getElementById('missed');
+const levelEl = document.getElementById('level');
+const targetScoreEl = document.getElementById('targetScore');
+const startButton = document.getElementById('startButton');
+const restartButton = document.getElementById('restartButton');
+const gameOverMessage = document.getElementById('gameOverMessage');
+const sideNotification = document.getElementById('sideNotification'); // Side notification element
+const levelUpPopup = document.getElementById('levelUpPopup'); // Level-up popup
+const levelUpMessage = document.getElementById('levelUpMessage'); // Level-up message
+
+// Pause/Resume elements
+const pauseButton = document.getElementById('pauseButton');
+const pausePopup = document.getElementById('pausePopup');
+const resumeButton = document.getElementById('resumeButton');
+
+// Canvas dimensions
+const isMobile = window.innerWidth < 768;
+canvas.width = isMobile ? window.innerWidth * 0.9 : window.innerWidth * 0.75;
+canvas.height = window.innerHeight;
+
+// Paddle details
+const paddle = {
+    x: canvas.width / 2 - (isMobile ? 50 : 75),
+    y: canvas.height - 20,
+    width: isMobile ? 100 : 150,
+    height: 15,
+    dx: 0,
+    speed: isMobile ? 5 : 8
+};
+
+// Virus details
+const virusNames = ['Trojan', 'Malware', 'Spyware', 'Ransomware', 'Phishing'];
+let virusSpeed = 3; // Initial virus speed
+const virus = {
+    x: Math.random() * (canvas.width - 40) + 20,
+    y: 0,
+    size: Math.random() * 20 + 30,
+    dy: virusSpeed, // Virus speed
+    name: virusNames[Math.floor(Math.random() * virusNames.length)],
+    img: new Image()
+};
+virus.img.src = '/image/v.png';
+
+// Sound alert for missed virus
+const missSound = new Audio('/sound/alert.mp3');
+const catchSound = document.getElementById('catchSound');
+
+// Game variables
+let score = 0;
+let caught = 0;
+let missed = 0;
+let level = 1;
+let targetScore = 1000;
+let isGameRunning = false;
+let isGamePaused = false;
+
+// Control bar buttons for moving the paddle
+const leftBtn = document.getElementById('leftBtn');
+const rightBtn = document.getElementById('rightBtn');
+
+// Left button event handlers
+leftBtn.addEventListener('mousedown', () => {
+    paddle.dx = -paddle.speed;
+});
+leftBtn.addEventListener('mouseup', () => {
+    paddle.dx = 0;
+});
+leftBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    paddle.dx = -paddle.speed;
+});
+leftBtn.addEventListener('touchend', () => {
+    paddle.dx = 0;
+});
+
+// Right button event handlers
+rightBtn.addEventListener('mousedown', () => {
+    paddle.dx = paddle.speed;
+});
+rightBtn.addEventListener('mouseup', () => {
+    paddle.dx = 0;
+});
+rightBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    paddle.dx = paddle.speed;
+});
+rightBtn.addEventListener('touchend', () => {
+    paddle.dx = 0;
+});
+
+// Keyboard controls for desktop
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' || e.key === 'a') {
+        paddle.dx = -paddle.speed;
+    } else if (e.key === 'ArrowRight' || e.key === 'd') {
+        paddle.dx = paddle.speed;
+    }
+});
+
+document.addEventListener('keyup', (e) => {
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'ArrowRight' || e.key === 'd') {
+        paddle.dx = 0;
+    }
+});
+
+// Pause/Resume logic
+function pauseGame() {
+    if (isGameRunning) {
+        isGamePaused = true;
+        isGameRunning = false;
+        pausePopup.style.display = 'block';
+    }
+}
+
+function resumeGame() {
+    if (isGamePaused) {
+        isGamePaused = false;
+        isGameRunning = true;
+        pausePopup.style.display = 'none';
+        requestAnimationFrame(gameLoop);
+}
+}
+// Event listeners for pause and resume buttons
+pauseButton.addEventListener('click', pauseGame);
+resumeButton.addEventListener('click', resumeGame);
+
+// Draw paddle
+function drawPaddle() {
+    ctx.fillStyle = '#007bff';
+    ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+}
+
+// Draw virus
+function drawVirus() {
+    ctx.drawImage(virus.img, virus.x, virus.y, virus.size, virus.size);
+    ctx.font = '12px Arial';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(virus.name, virus.x + virus.size / 4, virus.y - 5);
+}
+
+// Update positions
+function update() {
+    if (!isGameRunning) return;
+
+    // Move the paddle
+    paddle.x += paddle.dx;
+    if (paddle.x < 0) paddle.x = 0;
+    if (paddle.x + paddle.width > canvas.width) paddle.x = canvas.width - paddle.width;
+
+    // Move the virus
+    virus.y += virus.dy;
+
+    // Virus collision with the paddle
+    if (
+        virus.y + virus.size > paddle.y &&
+        virus.x > paddle.x &&
+        virus.x < paddle.x + paddle.width
+    ) {
+        resetVirus();
+        caught++;
+        score += 50;
+        catchSound.play();
+        updateStats();
+    }
+
+    // Virus falls out of bounds
+    if (virus.y > canvas.height) {
+        missSound.play();
+        showSideNotification();
+        resetVirus();
+        missed++;
+        score -= 5;
+        updateStats();
+
+        if (missed >= 5) {
+            endGame();
+        }
+    }
+
+    // Draw everything
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawPaddle();
+    drawVirus();
+}
+
+// Reset virus position and attributes after catching or missing
+function resetVirus() {
+    virus.y = 0;
+    virus.x = Math.random() * (canvas.width - 40) + 20;
+    virus.size = Math.random() * 20 + 30;
+    virus.name = virusNames[Math.floor(Math.random() * virusNames.length)];
+}
+
+// Update stats and check for level up
+function updateStats() {
+    scoreEl.textContent = score;
+    caughtEl.textContent = caught;
+    missedEl.textContent = missed;
+    levelEl.textContent = level;
+    targetScoreEl.textContent = targetScore;
+
+    // Check if the score exceeds the target score and level up
+    if (score >= targetScore) {
+        level++;
+        targetScore += 1000;
+        increaseVirusSpeed(); // Increase virus speed at level-up
+        updateLevelNotification();
+    }
+}
+
+// Increase the virus speed as the game levels up
+function increaseVirusSpeed() {
+    virusSpeed += 0.5; // Increase speed by 0.5 for each level
+    virus.dy = virusSpeed; // Apply the new virus speed
+}
+
+// Notify the player about level-up
+function updateLevelNotification() {
+    levelUpMessage.textContent = `Level ${level}! Congratulations!`;
+    levelUpPopup.style.display = 'block';
+
+    setTimeout(() => {
+        levelUpPopup.style.display = 'none';
+    }, 5000);
+}
+
+// Side Notification
+function showSideNotification() {
+    sideNotification.classList.add('show');
+    setTimeout(() => sideNotification.classList.remove('show'), 5000);
+}
+
+// Start the game
+function startGame() {
+    score = 0;
+    caught = 0;
+    missed = 0;
+    level = 1;
+    targetScore = 1000;
+    virusSpeed = 3;  // Reset virus speed to initial value
+    virus.dy = virusSpeed;
+    paddle.speed = isMobile ? 5 : 8;
+    isGameRunning = true;
+
+    startButton.style.display = 'none';
+    restartButton.style.display = 'none';
+    gameOverMessage.style.display = 'none';
+
+    requestAnimationFrame(gameLoop);
+}
+
+// End the game
+function endGame() {
+    isGameRunning = false;
+    gameOverMessage.style.display = 'block';
+    startButton.style.display = 'block';
+    restartButton.style.display = 'block';
+    restartButton.addEventListener('click', startGame);
+}
+
+// Game loop
+function gameLoop() {
+    if (!isGameRunning) return;
+
+    update();
+    requestAnimationFrame(gameLoop);
+}
+
+// Start button event listener
+startButton.addEventListener('click', startGame);
+
+if (sessionStorage.getItem('accessGranted') !== 'true') {
+            window.location.href = 'unlock.html'; // Redirect to the key entry page
+        }
+
+
+
+    </script>
+        
+
+</body>
+</html>
