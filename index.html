@@ -105,10 +105,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container mt-5 pt-5">
-        <div class="text-center">
-            <div class="animated-text">Welcome</div>
-        </div>
+    
 
         <!-- Wrapper Section -->
         <div class="wrapper mt-4">
@@ -127,27 +124,83 @@
 <br>
     <br>
 
-
     <div class="text-center">
               
-      <div class="animated-text">Coming Soon</div>
+      <div class="animated-text">Catch the Virus</div>
   </div>
 <hr>
 
     <div class="container py-5">
       <div class="row align-items-center">
         <!-- Image Section -->
+        
         <div class="col-md-6 image-container text-center mb-4 mb-md-0">
-          <img src="image/comingsoon.png" alt="App Preview" class="img-fluid">
+          <img src="image/catchthevirus.png" alt="App Preview" class="img-fluid">
+          <br>
+          <br>
+          <h3 class="mb-4">Cybersecurity, Ethical hacking Based Game</h3>
+          <div class="star-rating">
+            <span>&#9733;</span>
+            <span>&#9733;</span>
+            <span>&#9733;</span>
+            <span>&#9733;</span>
+            <span>&#9733;</span>
+          </div>
         </div>
         
-        <!-- Download Button Section -->
         <div class="col-md-6 download-button">
-          <h2 class="mb-4">Christmas Special</h2>
-          <a  class="btn btn-primary btn-lg" download>Coming Soon</a>
+          <h3 class="mb-4">This Offers is  Only for a Fewdays</h3>
+          <h2 class="mb-4">Lifetime Subscription</h2>
+          <a href="payment.html" class="btn btn-primary btn-lg shadow-sm">Buy ₹1</a>
+          <p class="old-price">₹500</p> <p class="display-4" style="color: #63ff03;">99% OFF</p>
+          <p class="timer" id="countdown"></p>
+
+
         </div>
       </div>
     </div>
+<style>
+    .old-price {
+      text-decoration: line-through;
+      color: #7f8c8d;
+    }
+    .star-rating {
+      color: #f39c12;
+    }
+    .timer {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f60e16;
+    }
+</style>
+<script>
+   // Set the date we're counting down to
+   var countDownDate = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 hours from now
+
+// Update the countdown every 1 second
+var x = setInterval(function() {
+
+  // Get the current time
+  var now = new Date().getTime();
+  
+  // Find the distance between now and the countdown date
+  var distance = countDownDate - now;
+  
+  // Time calculations for days, hours, minutes, and seconds
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  // Display the result in the element with id="countdown"
+  document.getElementById("countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+  
+  // If the countdown is over, display a message
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
             <div class="text-center">
               
               <div class="animated-text">Encrypting and Decrypting Tool</div>
