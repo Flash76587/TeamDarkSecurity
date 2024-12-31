@@ -1,0 +1,44 @@
+/* General Color Styling */
+body {
+    background-color: #1e1c1c; /* Dark background for a modern look */
+    color: #2c2929;
+}
+
+/* Highlight Color */
+.brand-title, .animated-text, h1, h2 {
+    color: #ffffff;
+}
+
+/* Secondary Background Color */
+.wrapper {
+    background-color: #111010;
+    color: #cccccc;
+}
+
+/* Paragraph Text Color */
+p {
+    color: #ebebeb;
+}
+
+/* Button Colors */
+.btn {
+    background-color: #4dc1de;
+    color: #1c1c1c;
+}
+
+.btn:hover {
+    background-color: #3ab795; /* Darker shade on hover */
+}
+
+/* Footer Color */
+footer {
+    background-color: #121111;
+    color: #1e1c1c;
+}
+
+
+/* Highlight Color */
+.brand-title, h2 {
+    color: #ffffff;
+    font-weight: 800;
+}
