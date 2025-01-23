@@ -1,0 +1,38 @@
+
+        /* Banner Section Styling */
+        .moving-banner {
+            background-color: #ffffff;
+            height: 105px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Moving Images Container */
+        .moving-images {
+            display: flex;
+            width: max-content;
+            animation: move-images 15s linear infinite;
+        }
+
+        /* Keyframes for Moving Images */
+        @keyframes move-images {
+            0% {
+                transform: translateX(0); /* Start at the beginning */
+            }
+            100% {
+                transform: translateX(-50%); /* Move off the screen */
+            }
+        }
+
+        /* Image Styling */
+        .moving-banner img {
+            height: 100px;
+            margin-right: -20px; /* Adjust space between images */
+        }
+
+        /* Ensure images don't shrink */
+        .moving-images img {
+            flex-shrink: 0;
+        }
