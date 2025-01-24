@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://teamdarksecurity.com/brute.html">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TeamDarkSecurity">
+    <meta name="description" content="Test your password strength with our Brute-Force Simulation Tool. Learn how secure your passwords are and get tips to improve your cybersecurity.">
+    <meta name="keywords" content="Brute-Force Simulation, Password Security, Online Security Tool, Password Strength Tester, Cybersecurity Tools, Brute-Force Testing, Enhance Password Protection, Security Awareness Tool">
+    <title>Brute-Force Simulation Tool: Enhance Password Protection</title>
+ <!-- Social Media Meta Tags (Open Graph) -->
+ <meta property="og:title" content="Brute-Force Simulation Tool | Enhance Password Security Online">
+ <meta property="og:description" content="Test your password strength with our Brute-Force Simulation Tool. Learn how secure your passwords are and get tips to improve your cybersecurity.">
+ <meta property="og:image" content="logo.jpg">
+ <meta property="og:url" content="https://teamdarksecurity.com">
+ <meta property="og:type" content="website">
+
+ <!-- Twitter Card Tags -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Brute-Force Simulation Tool | Enhance Password Security Online">
+ <meta name="twitter:description" content="Test your password strength with our Brute-Force Simulation Tool. Learn how secure your passwords are and get tips to improve your cybersecurity.">
+ <meta name="twitter:image" content="logo.jpg">
+ <link rel="icon" href="logo.jpg" type="image/x-icon">
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9137654682913207"
+ crossorigin="anonymous"></script>
+     <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BNJLGS6EDT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BNJLGS6EDT');
+</script>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .card {
+            background-color: #111;
+            border: 1px solid #0f0;
+        }
+        .btn-danger {
+            background-color: #f00;
+            border-color: #f00;
+        }
+        .btn-danger:hover {
+            background-color: #c00;
+            border-color: #c00;
+        }
+        .result {
+            font-weight: bold;
+        }
+        .theme-text {
+            color: #0f0;
+        }
+        .terminal {
+            background-color: #111;
+            padding: 10px;
+            border: 1px solid #0f0;
+            height: 150px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+        .password-list {
+            background-color: #222;
+            color: #0f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .password-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .password-list ul li {
+            padding: 5px;
+            border-bottom: 1px solid #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="mb-4 theme-text">Brute-Force Attack Demo</h1>
+        <p class="text-muted theme-text">This demo simulates a brute-force attack to show how hackers attempt to crack passwords.</p>
+
+        <div class="card mx-auto" style="max-width: 400px;">
+            <div class="card-body">
+                <h5 class="card-title theme-text">Enter a Password</h5>
+                <input type="password" id="targetPassword" class="form-control mb-3" placeholder="Set a target password">
+                <button id="startAttack" class="btn btn-danger">Start Brute-Force</button>
+                <div class="mt-3">
+                    <p>Attempts: <span id="attempts">0</span></p>
+                    <p class="result theme-text">Status: <span id="status">Not Started</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h3 class="theme-text">Terminal Output</h3>
+            <div class="terminal" id="terminal"></div>
+        </div>
+
+        <!-- Password List Section -->
+        <div class="mt-4 password-list">
+            <h4 class="theme-text">Password List</h4>
+            <ul id="passwordList">
+                <li>1234</li>
+                <li>password</li>
+                <li>admin</li>
+                <li>letmein</li>
+                <li>welcome</li>
+                <li>qwerty</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('startAttack').addEventListener('click', function() {
+            const targetPassword = document.getElementById('targetPassword').value;
+            if (!targetPassword) {
+                alert('Please set a target password to start the demo.');
+                return;
+            }
+
+            // Predefined password list
+            const passwordList = ['1234', 'password', 'admin', 'letmein', 'welcome', 'qwerty'];
+            let attempts = 0;
+            const terminal = document.getElementById('terminal');
+
+            // Status elements
+            const attemptsElement = document.getElementById('attempts');
+            const statusElement = document.getElementById('status');
+
+            // Reset UI
+            attemptsElement.textContent = '0';
+            statusElement.textContent = 'In Progress';
+            statusElement.classList.remove('text-success', 'text-danger');
+            statusElement.classList.add('text-warning');
+            terminal.innerHTML = ''; // Clear terminal output
+
+            // Function to simulate brute-force
+            const bruteForce = () => {
+                if (attempts < passwordList.length) {
+                    const guessedPassword = passwordList[attempts];
+                    attempts++;
+                    attemptsElement.textContent = attempts;
+
+                    // Add to terminal log
+                    const log = document.createElement('div');
+                    log.textContent = `Attempt ${attempts}: Trying "${guessedPassword}"`;
+                    terminal.appendChild(log);
+                    terminal.scrollTop = terminal.scrollHeight;
+
+                    if (guessedPassword === targetPassword) {
+                        statusElement.textContent = 'Password Found!';
+                        statusElement.classList.remove('text-warning');
+                        statusElement.classList.add('text-success');
+
+                        // Add success message to terminal
+                        const successLog = document.createElement('div');
+                        successLog.textContent = `Success: Password "${guessedPassword}" matched!`;
+                        successLog.style.color = '#0f0';
+                        terminal.appendChild(successLog);
+                        terminal.scrollTop = terminal.scrollHeight;
+                        return;
+                    } else {
+                        setTimeout(bruteForce, 500); // Adjust speed for demo purposes
+                    }
+                } else {
+                    statusElement.textContent = 'Password Not Found!';
+                    statusElement.classList.remove('text-warning');
+                    statusElement.classList.add('text-danger');
+
+                    // Add failure message to terminal
+                    const failureLog = document.createElement('div');
+                    failureLog.textContent = `Failure: Exhausted password list without a match.`;
+                    failureLog.style.color = '#f00';
+                    terminal.appendChild(failureLog);
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+            };
+
+            bruteForce();
+        });
+    </script>
+</body>
+</html>
