@@ -1,4 +1,4 @@
- <script>
+ 
         document.addEventListener("DOMContentLoaded", function () {
             const banner = document.getElementById("cookie-banner");
             const acceptBtn = document.getElementById("accept-cookies");
@@ -66,4 +66,4 @@
                 });
             }
         });
-    </script>
+    
