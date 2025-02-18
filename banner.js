@@ -30,29 +30,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to enable Google Analytics
     function enableAnalytics() {
-        if (window.dataLayer && !document.querySelector('script[src="https://www.googletagmanager.com/gtag/js?id=G-BNJLGS6EDT"]')) {
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
+        if (!window.dataLayer) {
+            window.dataLayer = [];
+        }
 
-            // Set consent preferences
-            gtag('consent', 'update', {
-                'ad_storage': 'granted',
-                'analytics_storage': 'granted',
-                'ad_user_data': 'granted',
-                'ad_personalization': 'granted'
-            });
-
-            // Load Google Analytics Script
+        // Ensure the Google Analytics script is not loaded multiple times
+        if (!document.querySelector('script[src="https://www.googletagmanager.com/gtag/js?id=G-BNJLGS6EDT"]')) {
             let script = document.createElement("script");
-            script.src = "https://www.googletagmanager.com/gtag/js?id=G-BNJLGS6EDT"; // Replace with your GA4 ID
+            script.src = "https://www.googletagmanager.com/gtag/js?id=G-BNJLGS6EDT"; // Your GA4 ID
             script.async = true;
             document.head.appendChild(script);
 
             script.onload = function () {
                 gtag('js', new Date());
-                gtag('config', 'G-BNJLGS6EDT'); // Replace with your GA4 ID
+                gtag('config', 'G-BNJLGS6EDT', { 'debug_mode': true }); // Your GA4 ID
             };
         }
+
+        gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'analytics_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted'
+        });
     }
 
     // Function to disable tracking
@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
 
-        // Set consent preferences to deny tracking
         gtag('consent', 'update', {
             'ad_storage': 'denied',
             'analytics_storage': 'denied',
@@ -68,5 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
             'ad_personalization': 'denied'
         });
     }
-});
 
+    // Function to initialize gtag for tracking
+    function gtag() {
+        window.dataLayer.push(arguments);
+    }
+});
