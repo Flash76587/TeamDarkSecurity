@@ -119,6 +119,66 @@
         </div>
     </nav>
 
+<style>
+            /* Custom Styles */
+            #cookie-banner {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.9);
+                color: white;
+                padding: 15px;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                width: 90%;
+                max-width: 400px;
+                z-index: 1000;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+            }
+    
+            #cookie-banner.show {
+                opacity: 1;
+            }
+            .cookie-buttons {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+            }
+            .cookie-buttons button {
+                flex: 1;
+                margin: 5px;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            #accept-cookies {
+                background-color: #28a745;
+                color: white;
+            }
+            #decline-cookies {
+                background-color: #dc3545;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <!-- Cookie Consent Banner -->
+        <div id="cookie-banner" class="show">
+            <p>We use cookies to improve your experience. By clicking "Accept," you consent to analytics and ads.</p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies">Accept</button>
+                <button id="decline-cookies">Decline</button>
+            </div>
+        </div>
+    
     <!-- Main Content -->
     <br>
     <br>
@@ -584,7 +644,7 @@ At Team DarkSecurity, our mission is clear: to protect the world from cybercrime
       <p>&copy; 2025 <a href="https://teamdarksecurity.com">TeamDarkSecurity</a>. All rights reserved.</p>
   </div>
 </footer>
-
+    <script src="banner.js"></script>
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->
