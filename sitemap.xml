@@ -94,11 +94,17 @@
 </url>
 <url>
   <loc>https://teamdarksecurity.com/lockgen.html</loc>
+       <image:image>
+      <image:loc>https://www.teamdarksecurity.com/LockGen.png</image:loc>
+    </image:image>
   <lastmod>2025-02-07T16:43:00+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://teamdarksecurity.com/ab.html</loc>
+      <image:image>
+      <image:loc>https://www.teamdarksecurity.com/WhatsApp Image 2024-11-19 at 11.59.45 PM.jpeg</image:loc>
+    </image:image>
   <lastmod>2025-02-07T16:43:00+00:00</lastmod>
   <priority>0.64</priority>
 </url>
@@ -112,4 +118,5 @@
   <lastmod>2025-02-07T16:43:00+00:00</lastmod>
   <priority>0.64</priority>
 </url>
+    
 </urlset>
